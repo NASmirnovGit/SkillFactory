@@ -1,6 +1,7 @@
-string = input("Введите числа через пробел:")
-
-list_of_strings = string.split() # список строковых представлений чисел
-list_of_numbers = list(map(int, list_of_strings)) # список чисел
-
-print(sum(list_of_numbers[::3])) # sum() вычисляет сумму элементов списка
+L = [1,2]
+print(L)
+M = L
+print(M)
+M.append(3)
+print(M)
+print(L)
