@@ -1,19 +1,19 @@
-def sort_list(list): # функция сортировки списка вставками
-    for i in range(1, len(list)):
-        x = list[i]
+def sort_list(numbers):  # функция сортировки списка вставками
+    for i in range(1, len(numbers)):
+        x = numbers[i]
         idx = i
-        while idx > 0 and list[idx - 1] > x:
-            list[idx] = list[idx - 1]
+        while idx > 0 and numbers[idx - 1] > x:
+            numbers[idx] = numbers[idx - 1]
             idx -= 1
-        list[idx] = x
-    return list
+        numbers[idx] = x
+    return numbers
 
 
-def number_index(list, n): # Функция поиска индекса числа после которого будет подставляемое число
+def number_index(numbers, num):  # Функция поиска индекса числа после которого будет подставляемое число
     n_idx = 0
-    if n < list[-1]: # Проверяем меньше ли подставляемое максимального в списке
-        for i in range(len(list)):
-            if list[i] < n and list[i+1] >= n:
+    if num < numbers[-1]:  # Проверяем меньше ли подставляемое максимального в списке
+        for i in range(len(numbers)):
+            if numbers[i] < num <= numbers[i+1]:
                 n_idx = i
                 break
             else:
@@ -34,16 +34,13 @@ else:
     if len(list_of_numbers) <= 1:
         print(f'Вы ввели только одно число {list_of_numbers}, сортировать нечего')
     else:
-        list = sort_list(list_of_numbers)
-        if n <= list[0]: # Если подставляемое число меньше минимального в списке
-            print(f'Отсортированый список введеных чисел: {list} \nПодставляемое число "{n}" будет в начале списка')
-        if n > list[-1]: # Если подставляемое число больше максимального в списке
-            print(f'Отсортированый список введеных чисел: {list} \nПодставляемое число "{n}" будет в конце списка')
-        else:
-            index = number_index(list, n)
-            print(f'Отсортированый список введеных чисел: {list} \nИндекс числа предыдущего подстовляемому: {index}')
+        sortlist = sort_list(list_of_numbers)
+        if n <= sortlist[0]:  # Если подставляемое число меньше минимального в списке
+            print(f'Отсортированый список введеных чисел: {sortlist}\nПодставляемое число "{n}" будет в начале списка')
+        if n > sortlist[-1]:  # Если подставляемое число больше максимального в списке
+            print(f'Отсортированый список введеных чисел: {sortlist}\nПодставляемое число "{n}" будет в конце списка')
+        if sortlist[0] < n < sortlist[-1]:
+            index = number_index(sortlist, n)
+            print(f'Отсортированый список введеных чисел: {sortlist}\nИндекс числа предыдущего подстовляемому: {index}')
 finally:
     print("Выход из программы")
-
-
-
