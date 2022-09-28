@@ -19,24 +19,29 @@ def number_index(list, n): # Функция поиска индекса числ
             else:
                 n_idx = 0
     else:
-        n_idx = len(list) - 1
+        n_idx = 'len(list) - 1'
     return n_idx
 
 
 try:
-    string = input('Введите целые числа через пробел:')
+    string = input('Введите целые числа через пробел, которые хотите отсортировать:')
     n = int(input('Введите подставляемое целое число:'))
     list_of_strings = string.split()
     list_of_numbers = list(map(int, list_of_strings))  # список чисел
 except ValueError as e:
     print(f'Текст ошибки: {e}\nВведенные числа не удовлетворяют условиям')
 else:
-    list = sort_list(list_of_numbers)
-    if n <= list[0]: # Если подставляемое число меньше минимального в списке
-        print(f'Отсортированый список введеных чисел: {list} \nПодставляемое число "{n}" будет в начале списка')
+    if len(list_of_numbers) <= 1:
+        print(f'Вы ввели только одно число {list_of_numbers}, сортировать нечего')
     else:
-        index = number_index(list, n)
-        print(f'Отсортированый список введеных чисел: {list} \nИндекс числа предыдущего подстовляемому: {index}')
+        list = sort_list(list_of_numbers)
+        if n <= list[0]: # Если подставляемое число меньше минимального в списке
+            print(f'Отсортированый список введеных чисел: {list} \nПодставляемое число "{n}" будет в начале списка')
+        if n > list[-1]:
+            print(f'Отсортированый список введеных чисел: {list} \nПодставляемое число "{n}" будет в конце списка')
+        else:
+            index = number_index(list, n)
+            print(f'Отсортированый список введеных чисел: {list} \nИндекс числа предыдущего подстовляемому: {index}')
 finally:
     print("Выход из программы")
 
